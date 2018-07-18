@@ -1,11 +1,9 @@
 class Layer {
-  constructor(name, minHeight, maxHeight, minColour, maxColour, greyScale) {
+  constructor(name, minHeight, maxHeight, hsl) {
     this.name = name;
     this.minHeight = minHeight;
     this.maxHeight = maxHeight;
-    this.minColour = minColour;
-    this.maxColour = maxColour;
-    this.greyScale = greyScale || false;
+    this.hsl = hsl;
   }
 
   inRange(num) {
@@ -17,11 +15,28 @@ class Layer {
   }
 
   calcColour(num) {
-    let mappedNum = map(num, this.minHeight, this.maxHeight, this.minColour, this.maxColour);
-    if (this.greyScale) {
-      return color(360, 0, mappedNum);
+    let h;
+    let s;
+    let l;
+
+    if (Array.isArray(this.hsl[0])) {
+      h = map(num, this.minHeight, this.maxHeight, this.hsl[0][0], this.hsl[0][1]);
     } else {
-      return color(mappedNum, 90, 65);
+      h = this.hsl[0];
     }
+
+    if (Array.isArray(this.hsl[1])) {
+      s = map(num, this.minHeight, this.maxHeight, this.hsl[1][0], this.hsl[1][1]);
+    } else {
+      s = this.hsl[1];
+    }
+
+    if (Array.isArray(this.hsl[2])) {
+      l = map(num, this.minHeight, this.maxHeight, this.hsl[2][0], this.hsl[2][1]);
+    } else {
+      l = this.hsl[2];
+    }
+
+    return color(h, s, l);
   }
 }
