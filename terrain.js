@@ -3,8 +3,8 @@ class Terrain {
     this.scl = scl;
     this.nScl = nScl;
     this.sens = sens;
-    this.nXOff = 0;
-    this.nYOff = 0;
+    this.nXOff = pow(scl, 4);
+    this.nYOff = pow(scl, 4);
     this.baseX = 0;
     this.baseY = 0;
     this.layers = [
