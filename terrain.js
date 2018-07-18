@@ -16,8 +16,12 @@ class Terrain {
   }
 
   update() {
-    this.nXOff = floor((mouseX * this.sens) / this.scl) * this.scl;
-    this.nYOff = floor((mouseY * this.sens) / this.scl) * this.scl;
+    let centerX = width / 2;
+    let centerY = height / 2;
+    let xDisp = floor(((mouseX - centerX) * this.sens) / this.scl) * this.scl;
+    let yDisp = floor(((mouseY - centerY) * this.sens) / this.scl) * this.scl;
+    this.nXOff += xDisp;
+    this.nYOff += yDisp;
   }
 
   draw() {
@@ -31,7 +35,7 @@ class Terrain {
   }
 
   smartDraw() {
-    if (mouseX != pmouseX && mouseY != pmouseY) {
+    if (mouseIsPressed) {
       this.draw();
     }
   }
