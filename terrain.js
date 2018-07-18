@@ -8,9 +8,10 @@ class Terrain {
     this.layers = [
       new Layer('Water', 0.0, 0.25, [[195, 220], 90, 65]),
       new Layer('Sand', 0.25, 0.30, [[35, 50], 90, 65]),
-      new Layer('Grass', 0.30, 0.55, [[100, 130], 90, 65]),
-      new Layer('Rock', 0.55, 0.70, [360, 0, [35, 60]]),
-      new Layer('Snow', 0.70, 1.0, [360, 0, [70, 95]]),
+      new Layer('Grass', 0.30, 0.50, [135, [20, 45], 50]),
+      new Layer('Dirt', 0.50, 0.55, [40, [15, 35], 40]),
+      new Layer('Rock', 0.55, 0.70, [360, 0, [40, 60]]),
+      new Layer('Snow', 0.70, 1.0, [360, 0, [80, 100]]),
     ];
   }
 
