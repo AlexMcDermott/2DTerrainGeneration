@@ -1,8 +1,6 @@
-body {
+html, body {
   margin: 0;
-  padding: 0;
-}
-
-div {
   overflow: hidden;
+  padding: 0;
+  position: fixed;
 }
