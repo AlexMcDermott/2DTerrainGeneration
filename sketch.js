@@ -9,11 +9,15 @@ function setup() {
 }
 
 function draw() {
-  t.update();
   t.smartDraw();
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
   t.draw();
+}
+
+function mousePressed() {
+  t.pressed();
+  return true;
 }

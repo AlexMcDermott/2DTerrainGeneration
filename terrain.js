@@ -5,6 +5,8 @@ class Terrain {
     this.sens = sens;
     this.nXOff = 0;
     this.nYOff = 0;
+    this.baseX = 0;
+    this.baseY = 0;
     this.layers = [
       new Layer('Water', 0.0, 0.25, [[195, 220], 90, 65]),
       new Layer('Sand', 0.25, 0.30, [[35, 50], 90, 65]),
@@ -16,15 +18,14 @@ class Terrain {
   }
 
   update() {
-    let centerX = width / 2;
-    let centerY = height / 2;
-    let xDisp = floor(((mouseX - centerX) * this.sens) / this.scl) * this.scl;
-    let yDisp = floor(((mouseY - centerY) * this.sens) / this.scl) * this.scl;
+    let xDisp = floor(((mouseX - this.baseX) * this.sens) / this.scl) * this.scl;
+    let yDisp = floor(((mouseY - this.baseY) * this.sens) / this.scl) * this.scl;
     this.nXOff += xDisp;
     this.nYOff += yDisp;
   }
 
   draw() {
+    this.update();
     for (let x = 0; x <= width; x += this.scl) {
       for (let y = 0; y <= height; y += this.scl) {
         let n = noise((x + this.nXOff) * this.nScl, (y + this.nYOff) * this.nScl);
@@ -46,5 +47,10 @@ class Terrain {
         return layer.calcColour(num);
       }
     }
+  }
+
+  pressed() {
+    this.baseX = mouseX;
+    this.baseY = mouseY;
   }
 }
