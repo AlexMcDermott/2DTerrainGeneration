@@ -15,18 +15,24 @@ class Terrain {
     ];
   }
 
-  draw() {
-    if (mouseX != pmouseX && mouseY != pmouseY || frameCount == 1) {
-      for (let x = 0; x <= width; x += this.scl) {
-        for (let y = 0; y <= height; y += this.scl) {
-          let n = noise((x + this.nXOff) * this.nScl, (y + this.nYOff) * this.nScl);
-          fill(this.calcColour(n));
-          rect(x, y, this.scl, this.scl);
-        }
-      }
+  update() {
+    this.nXOff = floor((mouseX * this.sens) / this.scl) * this.scl;
+    this.nYOff = floor((mouseY * this.sens) / this.scl) * this.scl;
+  }
 
-      this.nXOff = floor((mouseX * this.sens) / this.scl) * this.scl;
-      this.nYOff = floor((mouseY * this.sens) / this.scl) * this.scl;
+  draw() {
+    for (let x = 0; x <= width; x += this.scl) {
+      for (let y = 0; y <= height; y += this.scl) {
+        let n = noise((x + this.nXOff) * this.nScl, (y + this.nYOff) * this.nScl);
+        fill(this.calcColour(n));
+        rect(x, y, this.scl, this.scl);
+      }
+    }
+  }
+
+  smartDraw() {
+    if (mouseX != pmouseX && mouseY != pmouseY) {
+      this.draw();
     }
   }
 
