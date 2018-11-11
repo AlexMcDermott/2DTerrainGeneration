@@ -5,19 +5,18 @@ function setup() {
   noStroke();
   colorMode(HSL);
   t = new Terrain(20, 0.005, 0.25);
-  t.draw();
+  t.draw(true);
 }
 
 function draw() {
-  t.smartDraw();
+  t.draw();
 }
 
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
-  t.draw();
+  t.draw(true);
 }
 
 function mousePressed() {
   t.pressed();
-  return true;
 }

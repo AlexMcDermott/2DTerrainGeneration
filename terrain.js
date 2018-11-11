@@ -24,20 +24,16 @@ class Terrain {
     this.nYOff += yDisp;
   }
 
-  draw() {
-    this.update();
-    for (let x = 0; x <= width; x += this.scl) {
-      for (let y = 0; y <= height; y += this.scl) {
-        let n = noise((x + this.nXOff) * this.nScl, (y + this.nYOff) * this.nScl);
-        fill(this.calcColour(n));
-        rect(x, y, this.scl, this.scl);
+  draw(force = false) {
+    if (mouseIsPressed || force === true) {
+      this.update();
+      for (let x = 0; x <= width; x += this.scl) {
+        for (let y = 0; y <= height; y += this.scl) {
+          let n = noise((x + this.nXOff) * this.nScl, (y + this.nYOff) * this.nScl);
+          fill(this.calcColour(n));
+          rect(x, y, this.scl, this.scl);
+        }
       }
-    }
-  }
-
-  smartDraw() {
-    if (mouseIsPressed) {
-      this.draw();
     }
   }
 
